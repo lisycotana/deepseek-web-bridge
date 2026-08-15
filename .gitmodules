@@ -1,0 +1,9 @@
+[submodule "deepseek-web-mcp"]
+	path = deepseek-web-mcp
+	url = https://github.com/lisycotana/deepseek-web-mcp.git
+[submodule "dsh-deepseek-plugins"]
+	path = dsh-deepseek-plugins
+	url = https://github.com/lisycotana/dsh-deepseek-plugins.git
+[submodule "deepseek-pp-delegate"]
+	path = deepseek-pp-delegate
+	url = https://github.com/lisycotana/deepseek-pp-delegate.git
