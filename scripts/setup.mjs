@@ -93,6 +93,9 @@ function printNext(path, token) {
   console.log(`     secret:    bearer, value: ${token.slice(0, 8)}... (full token in .env)`)
   console.log('   Then from the sidebar DevTools console (right-click sidebar → Inspect):')
   console.log('     chrome.runtime.sendMessage({ type: "START_DELEGATE" }, (r) => console.log(r))')
+  console.log('   # For deep thinking (Reasoner): { type: "START_DELEGATE", payload: { modelType: "expert" } }')
+  console.log('   # For multimodal:                  { type: "START_DELEGATE", payload: { modelType: "vision" } }')
+  console.log('   # With web search enabled:          { type: "START_DELEGATE", payload: { searchEnabled: true } }')
 
   if (path === 'cli') {
     console.log('\n3. Add the MCP server to your CLI:')

@@ -55,6 +55,40 @@ node scripts/setup.mjs     # pick "dsh" when asked
 
 Then install the dsh plugins and configure the profile patch (the script prints the exact lines). See [`dsh-deepseek-plugins/README.md`](dsh-deepseek-plugins/README.md) for the preset row.
 
+## Choosing the model mode
+
+Two choices are independent and each defaults to the safe value.
+
+### DS web model mode (browser side)
+
+When starting the delegate from the sidebar DevTools console, pass `modelType` to pick the DeepSeek web mode:
+
+```javascript
+// default (standard chat) — the default when omitted
+chrome.runtime.sendMessage({ type: 'START_DELEGATE' }, (r) => console.log(r))
+
+// expert (deep thinking / Reasoner)
+chrome.runtime.sendMessage({ type: 'START_DELEGATE', payload: { modelType: 'expert' } }, (r) => console.log(r))
+
+// vision (multimodal)
+chrome.runtime.sendMessage({ type: 'START_DELEGATE', payload: { modelType: 'vision' } }, (r) => console.log(r))
+
+// also enable web search for the whole loop
+chrome.runtime.sendMessage({ type: 'START_DELEGATE', payload: { searchEnabled: true } }, (r) => console.log(r))
+```
+
+| Mode | `modelType` | What it does |
+| --- | --- | --- |
+| Standard | `default` (or omitted) | normal chat |
+| Deep thinking | `expert` | DeepSeek-Reasoner, deeper reasoning (slower) |
+| Multimodal | `vision` | image understanding |
+
+Web search is an independent toggle: `searchEnabled: true` lets the delegate use DeepSeek's web search per task.
+
+### dsh agent preset (dsh path only)
+
+The dsh side picks which built-in toolset the **parent** agent gets. Default is `standard` (full toolset). See [Which agent preset to use](dsh-deepseek-plugins/dsh-subagent-deepseek-web/README.md#which-agent-preset-to-use) for the four options (`standard`, `code`, `minimal`, `cordis`) and how to set it.
+
 ## Requirements
 
 - **Node.js >= 20** (no other runtime deps — the server is pure built-in modules)
